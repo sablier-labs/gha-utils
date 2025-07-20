@@ -8,7 +8,7 @@ on:
         required: false
         type: "number"
       days-before-issue-stale:
-        default: 182
+        default: 365
         required: false
         type: "number"
       days-before-pr-close:
@@ -20,7 +20,7 @@ on:
         required: false
         type: "number"
       exempt-issue-labels:
-        default: "help,priority0"
+        default: "help,priority0,priority1"
         required: false
         type: "string"
       operations-per-run:
