@@ -4,9 +4,10 @@ Reusable GitHub Actions utilities for Sablier projects.
 
 ## 🔧 Actions
 
-| Name                                          | Description        |
-| --------------------------------------------- | ------------------ |
-| [cache](.github/actions/evm-cache/action.yml) | Cache EVM projects |
+| Name                                                     | Description             |
+| -------------------------------------------------------- | ----------------------- |
+| [anchor-toolchain](.github/actions/evm-cache/action.yml) | Solana Anchor toolchain |
+| [evm-cache](.github/actions/evm-cache/action.yml)        | Cache EVM projects      |
 
 ## 🔄 Workflows
 
