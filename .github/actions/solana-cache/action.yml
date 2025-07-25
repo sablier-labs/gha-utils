@@ -1,5 +1,5 @@
-name: "Cache EVM Build Artifacts"
-description: "Internal composite action for EVM caching logic"
+name: "Cache Solana Build Artifacts"
+description: "Internal composite action for Solana caching logic"
 
 inputs:
   cache-path:
@@ -18,14 +18,6 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: "Check for Bun"
-      run: | #shell
-        if [ ! -f "bun.lock" ]; then
-          echo "Error: bun.lock file not found. This action requires Bun for Node.js dependency management."
-          exit 1
-        fi
-      shell: bash
-
     - uses: "actions/cache@v4"
       id: "cache-step"
       with:
@@ -33,18 +25,18 @@ runs:
         path: ${{ inputs.cache-path }}
 
         # Primary cache key composed of:
-        #   1. Hash of bun lockfile
-        #   1. Hash of foundry.toml config file
-        #   3. Hash of all Solidity files
+        #   1. Hash of Anchor.toml
+        #   1. Hash of Cargo.toml
+        #   3. Hash of all program files
         key: |
-          forge-build-${{ hashFiles('bun.lock') }}-${{ hashFiles('foundry.toml') }}-${{ hashFiles('**/*.sol') }}
+          anchor-build-${{ hashFiles('Anchor.toml') }}-${{ hashFiles('Cargo.toml') }}-${{ hashFiles('programs/**/*') }}
 
         # `restore-keys` is a terrible name and should be renamed to `backup-keys`:
         # See https://stackoverflow.com/a/79575296/3873510
         # See https://github.com/actions/cache/issues/1590
         restore-keys: |
-          forge-build-${{ hashFiles('bun.lock') }}-${{ hashFiles('foundry.toml') }}
-          forge-build-${{ hashFiles('bun.lock') }}
+          anchor-build-${{ hashFiles('Anchor.toml') }}-${{ hashFiles('Cargo.toml') }}
+          anchor-build-${{ hashFiles('Anchor.toml') }}
 
     # Interpret cache-hit output into three-part cache-status.
     # See https://github.com/actions/cache/issues/1566
