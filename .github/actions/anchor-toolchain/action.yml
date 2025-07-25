@@ -1,0 +1,48 @@
+name: "Setup Anchor"
+description: "Install Anchor CLI, Solana CLI, and Rust toolchain"
+branding:
+  icon: "anchor"
+  color: "blue"
+
+inputs:
+  anchor-version:
+    description: "Version of Anchor to use"
+    required: false
+    default: "0.31.1" # latest as of 2025-07-25
+  rust-toolchain:
+    description: "Version of Rust toolchain to use"
+    required: false
+    default: "nightly" # stable, nightly, or specific version, e.g. "1.88.0"
+  solana-cli-version:
+    description: "Version of Solana CLI to use, must be 2.x"
+    required: false
+    default: "2.1.21" # check release notes: https://anchor-lang.com/docs/updates/release-notes/0-31-1
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Set up Rust toolchain"
+      uses: "actions-rust-lang/setup-rust-toolchain@v1"
+      with:
+        cache: true
+        components: "rustfmt"
+        toolchain: ${{ inputs.rust-toolchain }}
+
+    - name: "Cache Solana CLI"
+      uses: "actions/cache@v4"
+      with:
+        path: |
+          ~/.cache/solana/
+          ~/.local/share/solana/
+        key: solana-cli-${{ runner.os }}-build-${{ inputs.solana-cli-version }}
+
+    - name: "Install Solana CLI"
+      run: | # shell
+        sh -c "$(curl -sSfL https://release.anza.xyz/v${{ inputs.solana-cli-version }}/install)"
+        echo "/home/runner/.local/share/solana/install/active_release/bin" >> $GITHUB_PATH
+      shell: bash
+
+    - name: "Install Anchor CLI"
+      run: | # shell
+        cargo install --git https://github.com/coral-xyz/anchor --tag v${{ inputs.anchor-version }} anchor-cli
+      shell: bash
