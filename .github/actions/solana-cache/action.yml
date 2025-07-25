@@ -29,13 +29,13 @@ runs:
         #   1. Hash of Cargo.toml
         #   3. Hash of all program files
         key: |
-          anchor-build-${{ hashFiles('Anchor.toml') }}-${{ hashFiles('Cargo.toml') }}-${{ hashFiles('programs/**/*') }}
+          anchor-build-${{ hashFiles('Anchor.toml') }}-${{ hashFiles('Cargo.lock') }}-${{ hashFiles('programs/**/*') }}
 
         # `restore-keys` is a terrible name and should be renamed to `backup-keys`:
         # See https://stackoverflow.com/a/79575296/3873510
         # See https://github.com/actions/cache/issues/1590
         restore-keys: |
-          anchor-build-${{ hashFiles('Anchor.toml') }}-${{ hashFiles('Cargo.toml') }}
+          anchor-build-${{ hashFiles('Anchor.toml') }}-${{ hashFiles('Cargo.lock') }}
           anchor-build-${{ hashFiles('Anchor.toml') }}
 
     # Interpret cache-hit output into three-part cache-status.
