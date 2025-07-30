@@ -9,6 +9,10 @@ inputs:
     description: "Version of Anchor to use"
     required: false
     default: "0.31.1" # latest as of 2025-07-25
+  rust-components:
+    description: "Comma-separated list of Rust components to install"
+    required: false
+    default: "clippy,rustfmt"
   rust-version:
     description: "Version of Rust compiler to use"
     required: false
@@ -34,7 +38,7 @@ runs:
       uses: "actions-rust-lang/setup-rust-toolchain@v1"
       with:
         cache: true
-        components: "rustfmt"
+        components: ${{ inputs.rust-components }}
         rustflags: ""
         toolchain: ${{ inputs.rust-version }}
 
