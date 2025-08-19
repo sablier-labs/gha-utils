@@ -51,6 +51,8 @@ on:
         required: false
       MAINNET_RPC_URL:
         required: false
+      ROUTEME_API_KEY:
+        required: false
 
 jobs:
   forge-test:
@@ -61,6 +63,7 @@ jobs:
       FOUNDRY_FUZZ_RUNS: ${{ inputs.foundry-fuzz-runs }}
       FOUNDRY_PROFILE: ${{ inputs.foundry-profile }}
       MAINNET_RPC_URL: ${{ secrets.MAINNET_RPC_URL }}
+      ROUTEME_API_KEY: ${{ secrets.ROUTEME_API_KEY }}
     runs-on: "ubuntu-latest"
     steps:
       - name: "Check out the repo"
