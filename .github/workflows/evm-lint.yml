@@ -2,7 +2,14 @@
 # Kept for backward compatibility, but will be removed in the future
 name: "Lint an EVM project"
 
-on: "workflow_call"
+on:
+  workflow_call:
+    inputs:
+      foundry-version:
+        default: "stable"
+        description: "Foundry version to use"
+        required: false
+        type: "string"
 
 jobs:
   evm-lint:
@@ -13,6 +20,8 @@ jobs:
 
       - name: "Install Foundry"
         uses: "foundry-rs/foundry-toolchain@v1"
+        with:
+          version: ${{ inputs.foundry-version }}
 
       - name: "Install Bun"
         uses: "oven-sh/setup-bun@v2"
