@@ -20,6 +20,12 @@ on:
         required: false
         type: "string"
 
+      foundry-version:
+        default: "stable"
+        description: "Foundry version to use"
+        required: false
+        type: "string"
+
     outputs:
       # See https://github.com/actions/cache/issues/1566
       cache-status:
@@ -37,6 +43,8 @@ jobs:
 
       - name: "Install Foundry"
         uses: "foundry-rs/foundry-toolchain@v1"
+        with:
+          version: ${{ inputs.foundry-version }}
 
       # If a cache is found for the primary key, the cache is restored. Otherwise, a new cache is created.
       - name: "Cache Foundry artifacts and Node.js dependencies"

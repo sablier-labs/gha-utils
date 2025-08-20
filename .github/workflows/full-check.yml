@@ -13,6 +13,11 @@ on:
         description: 'The command runner to use (default: "just")'
         required: false
         type: string
+      foundry-version:
+        default: "stable"
+        description: "Foundry version to use"
+        required: false
+        type: "string"
       install_foundry:
         default: true
         description: "Whether to install Foundry (default: true)"
@@ -28,6 +33,8 @@ jobs:
       - name: "Install Foundry"
         if: ${{ inputs.install_foundry }}
         uses: "foundry-rs/foundry-toolchain@v1"
+        with:
+          version: ${{ inputs.foundry-version }}
 
       - name: "Install Just"
         uses: "extractions/setup-just@v3"

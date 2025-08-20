@@ -12,6 +12,12 @@ on:
         required: false
         type: "string"
 
+      foundry-version:
+        default: "stable"
+        description: "Foundry version to use"
+        required: false
+        type: "string"
+
       match-path:
         required: true
         type: "string"
@@ -39,6 +45,8 @@ jobs:
 
       - name: "Install Foundry"
         uses: "foundry-rs/foundry-toolchain@v1"
+        with:
+          version: ${{ inputs.foundry-version }}
 
       - name: "Restore the cached build"
         uses: "sablier-labs/gha-utils/.github/actions/evm-cache@main"
