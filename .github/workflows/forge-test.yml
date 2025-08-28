@@ -55,7 +55,7 @@ on:
     secrets:
       MAINNET_RPC_URL:
         required: false
-      ROUTEME_API_KEY:
+      ROUTEMESH_API_KEY:
         required: false
 
 jobs:
@@ -66,7 +66,7 @@ jobs:
       FOUNDRY_FUZZ_RUNS: ${{ inputs.foundry-fuzz-runs }}
       FOUNDRY_PROFILE: ${{ inputs.foundry-profile }}
       MAINNET_RPC_URL: ${{ secrets.MAINNET_RPC_URL }}
-      ROUTEME_API_KEY: ${{ secrets.ROUTEME_API_KEY }}
+      ROUTEMESH_API_KEY: ${{ secrets.ROUTEMESH_API_KEY }}
     runs-on: "ubuntu-latest"
     steps:
       - name: "Check out the repo"
