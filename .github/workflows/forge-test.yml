@@ -34,7 +34,6 @@ on:
 
       foundry-version:
         default: "stable"
-        description: "Foundry version to use"
         required: false
         type: "string"
 
@@ -51,6 +50,12 @@ on:
         default: "Forge tests"
         required: false
         type: "string"
+
+      retry-attempts:
+        default: 1
+        description: "Number of attempts to retry if the test fails"
+        required: false
+        type: "number"
 
     secrets:
       MAINNET_RPC_URL:
@@ -90,7 +95,17 @@ jobs:
           echo "FOUNDRY_FUZZ_SEED=$seed" >> $GITHUB_ENV
 
       - name: "Run the tests"
-        run: 'forge test --match-path "${{ inputs.match-path }}"'
+        run: |
+          for attempt in $(seq 1 ${{ inputs.retry-attempts }}); do
+            if forge test --match-path "${{ inputs.match-path }}"; then
+              break
+            elif [ $attempt -eq ${{ inputs.retry-attempts }} ]; then
+              exit 1
+            else
+              echo "♻️ Attempt $attempt: tests failed, retrying in 60 seconds..."
+              sleep 60
+            fi
+          done
 
       - name: "Add summary"
         run: | # shell
