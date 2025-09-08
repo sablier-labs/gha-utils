@@ -37,13 +37,13 @@ runs:
         #   1. Hash of foundry.toml config file
         #   3. Hash of all Solidity files
         key: |
-          forge-build-${{ hashFiles('bun.lock') }}-${{ hashFiles('foundry.toml') }}-${{ hashFiles('**/*.sol') }}
+          forge-build-${{ hashFiles('bun.lock') }}-${{ hashFiles('**/foundry.toml') }}-${{ hashFiles('**/*.sol') }}
 
         # `restore-keys` is a terrible name and should be renamed to `backup-keys`:
         # See https://stackoverflow.com/a/79575296/3873510
         # See https://github.com/actions/cache/issues/1590
         restore-keys: |
-          forge-build-${{ hashFiles('bun.lock') }}-${{ hashFiles('foundry.toml') }}
+          forge-build-${{ hashFiles('bun.lock') }}-${{ hashFiles('**/foundry.toml') }}
           forge-build-${{ hashFiles('bun.lock') }}
 
     # Interpret cache-hit output into three-part cache-status.
