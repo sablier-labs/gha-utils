@@ -9,6 +9,10 @@ inputs:
     default: "false"
     description: "If true, fails if cache is missing"
     required: false
+  sol-files-path:
+    description: "Path to the Solidity files"
+    required: false
+    default: "**/*.sol"
 
 outputs:
   cache-status:
@@ -37,7 +41,7 @@ runs:
         #   1. Hash of foundry.toml config file
         #   3. Hash of all Solidity files
         key: |
-          forge-build-${{ hashFiles('bun.lock') }}-${{ hashFiles('**/foundry.toml') }}-${{ hashFiles('**/*.sol') }}
+          forge-build-${{ hashFiles('bun.lock') }}-${{ hashFiles('**/foundry.toml') }}-${{ hashFiles('${{ inputs.sol-files-path }}') }}
 
         # `restore-keys` is a terrible name and should be renamed to `backup-keys`:
         # See https://stackoverflow.com/a/79575296/3873510
