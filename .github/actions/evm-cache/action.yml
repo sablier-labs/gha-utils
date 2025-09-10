@@ -41,7 +41,7 @@ runs:
         #   1. Hash of foundry.toml config file
         #   3. Hash of all Solidity files
         key: |
-          forge-build-${{ hashFiles('bun.lock') }}-${{ hashFiles('**/foundry.toml') }}-${{ hashFiles('${{ inputs.sol-files-path }}') }}
+          forge-build-${{ hashFiles('bun.lock') }}-${{ hashFiles('**/foundry.toml') }}-${{ hashFiles(inputs.sol-files-path) }}
 
         # `restore-keys` is a terrible name and should be renamed to `backup-keys`:
         # See https://stackoverflow.com/a/79575296/3873510
