@@ -8,7 +8,7 @@ on:
         required: false
         type: "boolean"
 
-      tree-path:
+      test-dir:
         default: "tests/**/**.tree"
         required: false
         type: "string"
@@ -21,10 +21,10 @@ jobs:
         uses: "actions/checkout@v4"
 
       - name: "Install and run Bulloak"
-        uses: "smol-ninja/bulloak-toolchain@v1"
+        uses: "smol-ninja/bulloak-toolchain@v2"
         with:
           skip-modifiers: ${{ inputs.skip-modifiers }}
-          tree-path: ${{ inputs.tree-path }}
+          test-dir: ${{ inputs.test-dir }}
 
       - name: "Bulloak summary"
         run: | # shell
