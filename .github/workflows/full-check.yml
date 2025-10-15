@@ -24,7 +24,7 @@ on:
         required: false
         type: boolean
 jobs:
-  evm-lint:
+  full-check:
     runs-on: "ubuntu-latest"
     steps:
       - name: "Check out the repo"
