@@ -13,7 +13,7 @@ on:
         type: "string"
 
       foundry-version:
-        default: "stable"
+        default: "v1.3.6"
         description: "Foundry version to use"
         required: false
         type: "string"
