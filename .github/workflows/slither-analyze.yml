@@ -1,9 +1,18 @@
 name: "Analyze an Ethereum project with Slither"
 
-on: "workflow_call"
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        default: "."
+        required: false
+        type: "string"
 
 jobs:
   slither-analyze:
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
     runs-on: "ubuntu-latest"
     permissions:
       actions: "read"

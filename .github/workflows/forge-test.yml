@@ -57,6 +57,11 @@ on:
         required: false
         type: "number"
 
+      working-directory:
+        default: "."
+        required: false
+        type: "string"
+
     secrets:
       MAINNET_RPC_URL:
         required: false
@@ -65,6 +70,9 @@ on:
 
 jobs:
   forge-test:
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
     env:
       FOUNDRY_INVARIANT_DEPTH: ${{ inputs.foundry-invariant-depth }}
       FOUNDRY_INVARIANT_RUNS: ${{ inputs.foundry-invariant-runs }}

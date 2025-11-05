@@ -26,6 +26,11 @@ on:
         required: false
         type: "string"
 
+      working-directory:
+        default: "."
+        required: false
+        type: "string"
+
     outputs:
       # See https://github.com/actions/cache/issues/1566
       cache-status:
@@ -34,6 +39,9 @@ on:
 
 jobs:
   forge-build:
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
     runs-on: "ubuntu-latest"
     outputs:
       cache-status: ${{ steps.cache-step.outputs.cache-status }}
