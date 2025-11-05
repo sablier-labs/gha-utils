@@ -23,8 +23,15 @@ on:
         description: "Whether to install Foundry (default: true)"
         required: false
         type: boolean
+      working-directory:
+        default: "."
+        required: false
+        type: string
 jobs:
   full-check:
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
     runs-on: "ubuntu-latest"
     steps:
       - name: "Check out the repo"

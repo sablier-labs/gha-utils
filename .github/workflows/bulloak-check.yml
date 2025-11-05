@@ -13,8 +13,16 @@ on:
         required: false
         type: "string"
 
+      working-directory:
+        default: "."
+        required: false
+        type: "string"
+
 jobs:
   bulloak-check:
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
     runs-on: "ubuntu-latest"
     steps:
       - name: "Check out the repo"
