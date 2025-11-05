@@ -70,6 +70,7 @@ on:
 
 jobs:
   forge-test:
+    name: ${{ inputs.name }}
     defaults:
       run:
         working-directory: ${{ inputs.working-directory }}
