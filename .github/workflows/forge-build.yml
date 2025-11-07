@@ -26,6 +26,11 @@ on:
         required: false
         type: "string"
 
+      name:
+        default: "Forge build"
+        required: false
+        type: "string"
+
       working-directory:
         default: "."
         required: false
@@ -39,6 +44,7 @@ on:
 
 jobs:
   forge-build:
+    name: ${{ inputs.name }}
     defaults:
       run:
         working-directory: ${{ inputs.working-directory }}

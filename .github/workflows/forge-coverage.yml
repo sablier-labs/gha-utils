@@ -22,6 +22,11 @@ on:
         required: true
         type: "string"
 
+      name:
+        default: "Forge coverage"
+        required: false
+        type: "string"
+
       # This flag allows coverage with via-ir enabled for the "minimum amount of optimization" necessary.
       via-ir-minimum:
         default: false
@@ -43,6 +48,7 @@ on:
 
 jobs:
   forge-coverage:
+    name: ${{ inputs.name }}
     defaults:
       run:
         working-directory: ${{ inputs.working-directory }}

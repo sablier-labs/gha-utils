@@ -3,6 +3,11 @@ name: "Check with Bulloak that Solidity tests conform to BTT spec"
 on:
   workflow_call:
     inputs:
+      name:
+        default: "Bulloak checks"
+        required: false
+        type: "string"
+
       skip-modifiers:
         default: true
         required: false
@@ -20,6 +25,7 @@ on:
 
 jobs:
   bulloak-check:
+    name: ${{ inputs.name }}
     defaults:
       run:
         working-directory: ${{ inputs.working-directory }}

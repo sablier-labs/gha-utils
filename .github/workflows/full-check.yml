@@ -23,12 +23,17 @@ on:
         description: "Whether to install Foundry (default: true)"
         required: false
         type: boolean
+      name:
+        default: "Full check"
+        required: false
+        type: string
       working-directory:
         default: "."
         required: false
         type: string
 jobs:
   full-check:
+    name: ${{ inputs.name }}
     defaults:
       run:
         working-directory: ${{ inputs.working-directory }}
