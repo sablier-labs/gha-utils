@@ -61,6 +61,12 @@ jobs:
       - name: "Install Ni package manager resolver"
         run: "npm install -g @antfu/ni"
 
+      - name: "Install uv"
+        uses: "astral-sh/setup-uv@v5"
+
+      - name: "Install mdformat"
+        run: "uv tool install mdformat --with mdformat-frontmatter --with mdformat-gfm --python 3.13"
+
       - name: "Install the Node.js dependencies"
         run: "bun install --frozen-lockfile"
 
