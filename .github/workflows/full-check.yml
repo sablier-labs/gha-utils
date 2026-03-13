@@ -59,7 +59,7 @@ jobs:
           bun-version: "latest"
 
       - name: "Install Ni package manager resolver"
-        run: "npm install -g @antfu/ni"
+        run: "npm install -g @antfu/ni@28.3.0"
 
       - name: "Install uv"
         uses: "astral-sh/setup-uv@v5"
