@@ -33,7 +33,7 @@ on:
         type: "string"
 
       foundry-version:
-        default: "v1.3.6"
+        default: "v1.7.1"
         required: false
         type: "string"
 
