@@ -6,7 +6,7 @@ Reusable GitHub Actions utilities for Sablier projects.
 
 | Name                                                     | Description             |
 | -------------------------------------------------------- | ----------------------- |
-| [anchor-toolchain](.github/actions/evm-cache/action.yml) | Solana Anchor toolchain |
+| [anchor-toolchain](.github/actions/anchor-toolchain/action.yml) | Solana Anchor toolchain |
 | [evm-cache](.github/actions/evm-cache/action.yml)        | Cache EVM projects      |
 
 ## 🔄 Workflows
@@ -26,7 +26,7 @@ Reusable GitHub Actions utilities for Sablier projects.
 
 | Name                                          | Description                            |
 | --------------------------------------------- | -------------------------------------- |
-| [cron-stale](.github/workflows/cron-tale.yml) | Cron job to close stale issues and PRs |
+| [cron-stale](.github/workflows/cron-stale.yml) | Cron job to close stale issues and PRs |
 
 ## 📝 Notes
 
