@@ -48,7 +48,7 @@ jobs:
     defaults:
       run:
         working-directory: ${{ inputs.working-directory }}
-    runs-on: "ubuntu-latest"
+    runs-on: "ubuntu-24.04"
     outputs:
       cache-status: ${{ steps.cache-step.outputs.cache-status }}
     steps:
